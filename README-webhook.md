@@ -59,6 +59,7 @@ Secret	Optional for initial testing
 Events	Just the push event
 Active	Enabled
 Note: HTTP is used in this learning environment. HTTPS with a valid TLS certificate is recommended for production.
+
 5. Jenkins Freestyle Job Configuration
 
 Job Name: gitjob
