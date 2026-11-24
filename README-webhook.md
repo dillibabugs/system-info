@@ -64,8 +64,11 @@ Add the following script:
 
 
 bash
+
 echo "================================"
+
 echo "JENKINS GITHUB WEBHOOK TEST"
+
 echo "================================"
 
 echo "Build Started At: $(date)"
@@ -80,7 +83,10 @@ bash system_info.sh
 
 echo ""
 echo "Build Completed At: $(date)"
+
 echo "================================"
+
+
 Click Save.
 
 
