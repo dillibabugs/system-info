@@ -1,80 +1,48 @@
 Jenkins GitHub Webhook Integration
-A beginner-friendly project demonstrating automated Jenkins builds using GitHub Webhooks and Freestyle Projects.
+A hands-on project demonstrating automated Jenkins builds using GitHub Webhooks and Jenkins Freestyle Projects.
 
 1. Project Overview
 
-This project integrates GitHub Webhooks with Jenkins to automatically trigger builds whenever code changes are pushed to a GitHub repository.
+This project demonstrates how to integrate GitHub Webhooks with Jenkins to automatically trigger builds whenever code changes are pushed to a GitHub repository.
 
-Unlike Poll SCM, which periodically checks for changes, webhooks notify Jenkins when a GitHub push event occurs.
+Instead of periodically checking GitHub using Poll SCM, Jenkins receives notifications directly from GitHub whenever a push event occurs.
 
 2. Technologies Used
 
 Jenkins
-Git
-GitHub
+Git and GitHub
 GitHub Webhooks
 Linux
 Bash Shell Scripting
-3. Project Architecture
-
-
-text
-Developer
-    |
-    | Git Push
-    v
-GitHub Repository
-    |
-    | Push Event
-    v
-GitHub Webhook
-    |
-    | HTTP POST
-    v
-Jenkins Server
-    |
-    | Trigger Build
-    v
-Freestyle Project
-    |
-    | Execute Shell
-    v
-system_info.sh
-    |
-    v
-Jenkins Console Output
-4. GitHub Webhook Configuration
+3. GitHub Webhook Configuration
 
 Navigate to:
 
 GitHub Repository → Settings → Webhooks → Add Webhook
 
-Configure the following settings:
+Configure the following:
 
-
-Setting	Value
-Payload URL	http://16.171.242.161:8080/github-webhook/
-Content Type	application/json
-Secret	Optional for initial testing
-Events	Just the push event
-Active	Enabled
+Payload URL: http://16.171.242.161:8080/github-webhook/
+Content Type: application/json
+Secret: Optional for initial testing
+Events: Just the push event
+Active: Enabled
 Note: HTTP is used in this learning environment. HTTPS with a valid TLS certificate is recommended for production.
 
-5. Jenkins Freestyle Job Configuration
+4. Jenkins Freestyle Project Configuration
 
-Job Name: gitjob
+Open Jenkins and select the existing gitjob project.
 
 Navigate to:
 
-Jenkins Dashboard → gitjob → Configure
+Dashboard → gitjob → Configure
 
 Source Code Management
 
-
-Setting	Value
-SCM	Git
-Repository	Your GitHub repository URL
-Branch	*/main
+Select Git.
+Enter your GitHub repository URL.
+Configure the branch as */main.
+Add credentials if the repository is private.
 Build Triggers
 
 Enable:
@@ -89,7 +57,10 @@ Select:
 
 Add Build Step → Execute Shell
 
-Add the following commands:
+Add the following script:
+
+
+
 
 
 bash
@@ -110,53 +81,61 @@ bash system_info.sh
 echo ""
 echo "Build Completed At: $(date)"
 echo "================================"
-Save the Jenkins configuration.
+Click Save.
 
-6. Webhook Execution Workflow
 
-Developer modifies the source code.
+
+
+
+
+
+
+5. Webhook Execution Process
+
+Developer makes changes to the source code.
 Changes are committed and pushed to GitHub.
-GitHub sends a push event notification.
-Jenkins receives the webhook request.
+GitHub sends a push event notification to Jenkins.
+Jenkins receives the webhook notification.
 Jenkins checks the configured Git repository for changes.
 Jenkins triggers the Freestyle build.
-Jenkins executes system_info.sh.
-Build results appear in Console Output.
-7. Testing the Webhook
-
-Follow these steps to test the integration:
+Jenkins executes the shell script.
+Build results are displayed in Console Output.
+6. Testing the Webhook
 
 Open your GitHub repository.
-Modify system_info.sh.
+Modify the system_info.sh file.
+Add a simple comment or make a small change.
 Commit and push the changes to the configured branch.
 Open Jenkins Dashboard.
 Navigate to the gitjob project.
 Check Build History.
 Open the latest build.
 Verify the Console Output.
-8. Verify Webhook Delivery
+7. Verify Webhook Delivery
 
 Navigate to:
 
 GitHub Repository → Settings → Webhooks → Recent Deliveries
 
-Verify the following:
+Verify that:
 
-Event type: push
-HTTP response: 200
-Delivery status: Successful
-A successful HTTP response confirms that the endpoint responded. Also verify that Jenkins actually triggered the expected build.
+The event type is push.
+The HTTP response is successful (normally 200).
+The webhook delivery completed successfully.
+Jenkins triggered the expected build.
+8. Poll SCM vs GitHub Webhook
 
-9. Poll SCM vs GitHub Webhook
+Poll SCM
 
+Jenkins periodically checks the Git repository.
+Requires a polling schedule.
+Build execution depends on the polling interval.
+GitHub Webhook
 
-Feature	Poll SCM	GitHub Webhook
-Trigger method	Periodic checking	Event notification
-Communication	Jenkins checks GitHub	GitHub contacts Jenkins
-Build delay	Depends on polling interval	Usually near-immediate
-Configuration	Cron schedule	Webhook endpoint
-Efficiency	Repeated checks	Event-driven
-10. Learning Outcomes
+GitHub sends an event notification when code is pushed.
+Jenkins receives the notification.
+Builds can start without waiting for a polling interval.
+9. Learning Outcomes
 
 Through this project, I learned:
 
@@ -167,9 +146,9 @@ Automated build triggering.
 Webhook delivery verification.
 Difference between Poll SCM and Webhooks.
 Basic CI automation concepts.
-11. Conclusion
+10. Conclusion
 
-Successfully configured GitHub Webhooks with a Jenkins Freestyle Project to automate build execution whenever changes are pushed to the configured GitHub branch.
+Successfully integrated GitHub Webhooks with a Jenkins Freestyle Project to automate build execution whenever changes are pushed to the configured GitHub branch.
 
 This project is part of my hands-on Jenkins and CI/CD learning journey.
 
