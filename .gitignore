@@ -4,7 +4,9 @@
 
 # Backup files
 *.bak
-*~
+*.bkp
+*.backup
+
 
 # OS generated files
 .DS_Store
