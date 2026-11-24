@@ -1,5 +1,5 @@
 
-# Jenkins Linux System Information
+# Jenkins Linux Server System Information
 
 ## Project Overview
 
