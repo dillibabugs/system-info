@@ -23,10 +23,15 @@ GitHub Repository → Settings → Webhooks → Add Webhook
 Configure the following:
 
 Payload URL: http://16.171.242.161:8080/github-webhook/
+
 Content Type: application/json
+
 Secret: Optional for initial testing
+
 Events: Just the push event
+
 Active: Enabled
+
 Note: HTTP is used in this learning environment. HTTPS with a valid TLS certificate is recommended for production.
 
 4. Jenkins Freestyle Project Configuration
